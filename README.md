@@ -1,6 +1,6 @@
 Assessement API
 =====================
-Symfony 4 bundle for sending notifications
+Questions - choices API
 
 Requirements
 -----------------------------------
