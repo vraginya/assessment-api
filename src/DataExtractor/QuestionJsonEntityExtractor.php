@@ -56,12 +56,11 @@ class QuestionJsonEntityExtractor implements QuestionEntityDataExtractorInterfac
      */
     private function setChoices(Question $entity, array $data): Question
     {
-        $choiceId = 1;
         foreach ($data as $key => $value) {
             if (!isset($value['text'])) {
                 throw new InvalidJsonFileStructure();
             }
-            $choice = new Choice($choiceId++);
+            $choice = new Choice();
             $choice->setText($value['text']);
             $entity->addChoice($choice);
         }

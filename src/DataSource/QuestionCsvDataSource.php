@@ -33,6 +33,7 @@ class QuestionCsvDataSource implements QuestionsDataSourceInterface
         private QuestionEntityDataExtractorInterface $dataExtractor,
     ) {
         $this->filePath = $this->parameterBag->get('file_data_source.csv.questions');
+        //TODO: File existance check sould be added
         $this->file = new \SplFileObject($this->filePath, 'r');
         $this->file->setFlags(\SplFileObject::READ_CSV);
         while (!$this->isData($this->file->current())) {
