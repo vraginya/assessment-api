@@ -33,11 +33,14 @@ services:
     # please note that last definitions always *replace* previous ones
 
     #Default question data extractor
-    App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionCsvEntityExtractor'
+    App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionJsonEntityExtractor'
+    #App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionCsvEntityExtractor'
 
     #Default question data source
-    App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionCsvDataSource'
+    App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionJsonDataSource'
+    #App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionCsvDataSource'
 
+    #Default questions data provider
     'App\DataProvider\QuestionFileCollectionDataProvider':
         tags: [ { name: 'api_platform.collection_data_provider', priority: 1 } ]
         # Autoconfiguration must be disabled to set a custom priority
