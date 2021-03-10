@@ -25,7 +25,6 @@ class QuestionCsvEntityExtractor implements QuestionEntityDataExtractorInterface
             throw new InvalidPrimaryKeyException('Private key should be an integer value');
         }
         $entity = new Question($primaryKey);
-        $choiceId = 1;
         foreach ($data as $key => $value) {
             switch ($key) {
                 case 0:
@@ -35,7 +34,7 @@ class QuestionCsvEntityExtractor implements QuestionEntityDataExtractorInterface
                     $entity->setCreatedAt(new \DateTime($value));
                     break;
                 default:
-                    $choice = new Choice($choiceId++);
+                    $choice = new Choice();
                     $choice->setText($value);
                     $entity->addChoice($choice);
             }

@@ -6,6 +6,7 @@
 parameters:
     file_data_source.csv.questions: '../FileDataSource/csv/questions.csv'
     file_data_source.json.questions: '../FileDataSource/json/questions.json'
+    format.date_time: 'Y-m-d H:i:s'
 
 services:
     # default configuration for services in *this* file
@@ -32,13 +33,22 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+## API SET UP
+
     #Default question data extractor
-    App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionJsonEntityExtractor'
-    #App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionCsvEntityExtractor'
+#    App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionJsonEntityExtractor'
+    App\DataExtractor\QuestionEntityDataExtractorInterface: '@App\DataExtractor\QuestionCsvEntityExtractor'
 
     #Default question data source
-    App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionJsonDataSource'
-    #App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionCsvDataSource'
+#    App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionJsonDataSource'
+    App\DataSource\QuestionsDataSourceInterface: '@App\DataSource\QuestionCsvDataSource'
+
+    #Default question data destination
+#    App\DataSource\QuestionDataDestinationInterface: '@App\DataDestination\QuestionJsonDataSource'
+    App\DataSource\QuestionDataDestinationInterface: '@App\DataDestination\QuestionCsvDataDestination'
+
+    'App\Serializer\QuestionSerializer':
+        decorates: 'api_platform.serializer.normalizer.item'
 
     #Default questions data provider
     'App\DataProvider\QuestionFileCollectionDataProvider':
